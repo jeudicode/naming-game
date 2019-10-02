@@ -1,0 +1,1 @@
+This is an implementation of the minimal Naming Game proposed by Baronchelli.
