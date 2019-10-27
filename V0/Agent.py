@@ -3,21 +3,15 @@ import string
 
 class Agent():
 
-    def __init__(self, id, rule_set, many_objects, environment):
+    def __init__(self, id, environment):
         self.environment = environment
         self.id = id
-        self.words_per_object = []
-        self.rule_set = rule_set
-        for i in range(many_objects):
-            self.words_per_object.append([])
+        self.words = []
 
     def communicate(self, agent_id):
         # Communicate with other agent
-        # Select randomly of which object to speak of
-        id_object = random.randrange(0, len(self.words_per_object))
-
         # If our memory is empty, generate new word
-        if (len(self.words_per_object[id_object]) == 0):
+        if (len(self.words) == 0):
             self.generateOwnWord()
         
         # Select Random word from the memory of the agent

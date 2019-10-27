@@ -1,23 +1,22 @@
+from Agent import Agent
 import random
 import string 
 
-class Agent():
+class Comunity():
 
-    def __init__(self, id, rule_set, many_objects, environment):
+    def __init__(self, id, rule_set, many_objects, many_agents, environment):
         self.environment = environment
         self.id = id
-        self.words_per_object = []
         self.rule_set = rule_set
-        for i in range(many_objects):
-            self.words_per_object.append([])
+        # Populate agents
+        self.agents = []
+        for i in range(many_agents):
+            self.agents.append(Agent(i, rule_set, many_objects, environment))
 
     def communicate(self, agent_id):
         # Communicate with other agent
-        # Select randomly of which object to speak of
-        id_object = random.randrange(0, len(self.words_per_object))
-
         # If our memory is empty, generate new word
-        if (len(self.words_per_object[id_object]) == 0):
+        if (len(self.words) == 0):
             self.generateOwnWord()
         
         # Select Random word from the memory of the agent
