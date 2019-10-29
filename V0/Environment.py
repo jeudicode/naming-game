@@ -45,7 +45,7 @@ class Environment():
         self.communities[id_community].communicateFirstStage()
 
     def saveCurrentStats(self, ):
-        all_comminities_converged = True
+        all_communities_converged = True
         for i in range(len(self.communities)):
             converged = True
             for j in range(len(self.communities[i].agents)):
@@ -56,10 +56,10 @@ class Environment():
                 if (only_one_word_per_object == False):
                     converged = False
             if (converged == False):
-                all_comminities_converged = False
+                all_communities_converged = False
             else:
                 self.communities[i].converged = True
-        if (all_comminities_converged == True):
+        if (all_communities_converged == True):
             print("Ended!")
             for i in range(len(self.communities)):
                 print(self.communities[i].agents[0].objects)
