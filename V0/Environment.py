@@ -10,8 +10,8 @@ class Environment():
         # Save current Time
         self.currentTime = 0
 
-        # Save converged flag
-        self.converged = False
+        # Save converged first stage flag
+        self.converged_first_stage = False
 
         # Populate the Communities array
         self.communities = []
@@ -21,19 +21,48 @@ class Environment():
             self.communities.append(Community(i, rule_set, many_objects, many_agents_per_community, self))
 
         # Save and print the current Stats
-        self.saveCurrentStats()
+        # self.saveCurrentStats()
         # self.printStats()
 
     def communicateFirstStage(self, ):
         while(True):
             self.currentTime += 1
-            self.passTime()
-            if (self.converged == True):
+            self.passTimeFirstStage()
+            if (self.converged_first_stage == True):
                 break
+    
+    def communicateSecondStage(self, ):
+        self.communicateAmbassadors()
+        self.saveFrequenciesAfterCommunication()
+        print("Ended Second Stage!")
+        for i in range(len(self.communities)):
+            print("//////////////")
+            print("--------------------")
+            print(self.communities[i].agents[0].objects)
+            print("--------------------")
+            print("//////////////")
 
-    def passTime(self, ):
+    def communicateAmbassadors(self, ):
+        for i in range(len(self.communities)):
+            for j in range(len(self.communities)):
+                if (i == j):
+                    continue
+                self.communities[i].communicateAmbassadors(j)
+    
+    def saveFrequenciesAfterCommunication(self ,):
+        for i in range(len(self.communities)):
+            for j in range(len(self.communities)):
+                if (j == i):
+                    continue
+                self.currentTime += 1
+                self.communities[i].saveFrequencies(j)
+            # self.communities[i].purgeLessFrequentWords()
+            self.communities[i].propagateWordList()
+
+    def passTimeFirstStage(self, ):
         self.makeCommunicationFirstStage()
-        self.saveCurrentStats()
+        self.checkConvergedFirstStage()
+        # self.saveCurrentStats()
         # self.printStats()
     
     def makeCommunicationFirstStage(self, ):
@@ -44,7 +73,7 @@ class Environment():
         # Call communicate function in the community
         self.communities[id_community].communicateFirstStage()
 
-    def saveCurrentStats(self, ):
+    def checkConvergedFirstStage(self, ):
         all_comminities_converged = True
         for i in range(len(self.communities)):
             converged = True
@@ -60,10 +89,16 @@ class Environment():
             else:
                 self.communities[i].converged = True
         if (all_comminities_converged == True):
-            print("Ended!")
+            print("Ended First Stage!")
+            print("////////////////////")
             for i in range(len(self.communities)):
+                print("--------------------")
                 print(self.communities[i].agents[0].objects)
-            self.converged = True
+                print("--------------------")
+            print("////////////////////")
+            self.converged_first_stage = True
+
+    # def saveCurrentStats(self, ):
         # currentState = {
         #     "currentNumberOfWords": 0,
         #     "maxNumberOfWords": 0,
@@ -103,7 +138,7 @@ class Environment():
         
         # if (allAgentsHaveWords and len(currentDifferentWords) == 1):
         #     currentState["convergenceTime"] = self.currentTime
-        #     self.converged = True
+        #     self.converged_first_stage = True
         
         # self.archive_stats.append(currentState)
 
