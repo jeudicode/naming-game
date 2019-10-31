@@ -85,7 +85,7 @@ class Environment():
                 if (only_one_word_per_object == False):
                     converged = False
             if (converged == False):
-                all_comminities_converged = False
+                all_communities_converged = False
             else:
                 self.communities[i].converged = True
         if (all_comminities_converged == True):
