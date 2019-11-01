@@ -65,6 +65,8 @@ class Agent():
         # If the agent prefers the other word it replaces its own
         if preference > self.objects[id_object][0][2]:
             self.objects[id_object][0] = (1, other_word, preference)
+        else:
+            self.objects[id_object][0] = (1, self.objects[id_object][0][1], self.objects[id_object][0][2])
 
     def getPreference(self, own_word, other_word):
         # Initialize counters of how similar is the word to the current favourite one
@@ -109,11 +111,15 @@ class Agent():
     def purgeLessFrequentWords(self, id_object):
         max_val = 0
         max_ele = 0
+        heapq.heapify(self.objects[id_object])
+        new_objects = []
+        current_best = heapq.nlargest(1, self.objects[id_object])
+    
         for i in range(len(self.objects[id_object])):
             if (self.objects[id_object][i][0] > max_val):
                 max_val = self.objects[id_object][i][0]
                 max_ele = self.objects[id_object][i]
-        self.objects[id_object] = [max_ele]
+        self.objects[id_object] = current_best
 
     def learnWord(self, id_object, word):
         # print(self.objects[id_object])
