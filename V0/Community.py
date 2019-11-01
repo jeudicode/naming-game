@@ -25,3 +25,24 @@ class Community():
 
         # Call communicateFirstStage function
         self.agents[id_speaker].communicateFirstStage(id_hearer)
+
+    def communicateAmbassadors(self, id_community):
+        for i in range(len(self.agents[0].objects)):
+            self.environment.currentTime += 1
+            self.agents[0].ambassadorCommunication(i, id_community)
+    
+    def saveFrequencies(self, id_community):
+        for i in range(len(self.agents[0].objects)):
+            self.environment.currentTime += 1
+            self.agents[0].saveFrequencies(i, id_community)
+    
+    def purgeLessFrequentWords(self, ):
+        for i in range(len(self.agents[0].objects)):
+            self.environment.currentTime += 1
+            self.agents[0].purgeLessFrequentWords(i)
+
+    def propagateWordList(self, ):
+        for i in range(1,len(self.agents)):
+            for j in range(len(self.agents[0].objects)):
+                self.environment.currentTime += 1
+                self.agents[i].objects[j] = self.agents[0].objects[j]
