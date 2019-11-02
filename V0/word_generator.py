@@ -2,7 +2,6 @@ import random as rand
 
 class Word_Generator:
 
-
     syllables = ["a", "e", "i", "o", "u", 
                 "ba", "be", "bi", "bo", "bu",
                 "ca", "ce", "ci", "co", "cu",
@@ -124,42 +123,36 @@ class Word_Generator:
                 ] 
    
     @classmethod
-    def generate_words(cls, number_of_words, ruleset):
-        words = []
-        for i in range (number_of_words):
-            if ruleset == 1:
-               length = rand.randint(1, 4) 
-               s  = "a"
-               for j in range(length):
-                   s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
-               words.append(s)
-            elif ruleset == 2:
-                s  = ""
-                length = rand.randint(1, 4) 
-                for j in range(length):
-                   s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
-                s += "a"
-                words.append(s)
-            elif ruleset == 3:
-                s = ""
-                length = rand.randint(2, 8)
-                for j in range(int(length / 2)):
-                   s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
-                s  += "zaka" 
-                for j in range(int(length / 2)):
-                   s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
-                words.append(s)
-            elif ruleset == 4:
-                s = ""
-                length = rand.randint(2, 6)
-                for j in range(int(length / 2)):
-                   s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
-                s += "-"
-                for j in range(int(length / 2)):
-                   s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
-                words.append(s)
-            else:
-                print ("non-existent ruleset") 
-        
-        return words
+    def generate_words(cls, ruleset):
+        s = ""
+        if ruleset == 0:
+            length = rand.randint(1, 4) 
+            s  = "a"
+            for j in range(length):
+                s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
+        elif ruleset == 1:
+            s  = ""
+            length = rand.randint(1, 4) 
+            for j in range(length):
+                s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
+            s += "a"
+        elif ruleset == 2:
+            s = ""
+            length = rand.randint(2, 8)
+            for j in range(int(length / 2)):
+                s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
+            s  += "zaka" 
+            for j in range(int(length / 2)):
+                s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
+        elif ruleset == 3:
+            s = ""
+            length = rand.randint(2, 6)
+            for j in range(int(length / 2)):
+                s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
+            s += "-"
+            for j in range(int(length / 2)):
+                s += cls.syllables[rand.randint(0, len(cls.syllables) - 1)]
+        else:
+            print ("non-existent ruleset") 
+        return s
 

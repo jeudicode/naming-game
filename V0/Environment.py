@@ -3,22 +3,28 @@ import random
 
 class Environment():
     
-    def __init__(self, many_objects, many_agents_per_community, many_communities):
+    def __init__(self, many_objects, many_agents, many_communities):
         # Save the stats
         self.archive_stats = []
         
         # Save current Time
         self.currentTime = 0
 
+        # Set Current number of rule sets
+        self.n_rules = 4
+
         # Save converged first stage flag
         self.converged_first_stage = False
 
         # Populate the Communities array
         self.communities = []
+        many_agents_per_community = int(many_agents/many_communities)
         for i in range(many_communities):
-            # Set fixed rule set
-            rule_set = i + 1
-            self.communities.append(Community(i, rule_set, many_objects, many_agents_per_community, self))
+            if i == (many_communities - 1):
+                many_agents_per_community = many_agents
+            many_agents = many_agents - many_agents_per_community
+            print(many_agents_per_community)
+            self.communities.append(Community(i, many_objects, many_agents_per_community, self))
 
         # Save and print the current Stats
         # self.saveCurrentStats()
@@ -41,6 +47,7 @@ class Environment():
             print(self.communities[i].agents[0].objects)
             print("--------------------")
             print("//////////////")
+        print(self.currentTime)
 
     def communicateAmbassadors(self, ):
         for i in range(len(self.communities)):

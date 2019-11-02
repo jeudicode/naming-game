@@ -4,15 +4,15 @@ import string
 
 class Community():
 
-    def __init__(self, id, rule_set, many_objects, many_agents, environment):
+    def __init__(self, id, many_objects, many_agents, environment):
         self.environment = environment
         self.id = id
-        self.rule_set = rule_set
+        self.rule_set = random.randrange(0, self.environment.n_rules)
         self.converged = False
         # Populate agents
         self.agents = []
         for i in range(many_agents):
-            self.agents.append(Agent(i, rule_set, many_objects, environment))
+            self.agents.append(Agent(i, self.id, self.rule_set, many_objects, environment))
 
     def communicateFirstStage(self, ):
         # Get a random agent from the community as the speaker

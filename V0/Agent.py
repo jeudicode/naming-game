@@ -5,9 +5,10 @@ from word_generator import Word_Generator as wg
 
 class Agent():
 
-    def __init__(self, id, rule_set, many_objects, environment):
+    def __init__(self, id, id_own_community, rule_set, many_objects, environment):
         self.environment = environment
         self.id = id
+        self.id_own_community = id_own_community
         self.rule_set = rule_set
         self.objects = []
         for i in range(many_objects):
@@ -26,15 +27,15 @@ class Agent():
         word = heapq.nlargest(1, self.objects[id_object])[0][1]
         
         # If the hearer knows the word, the communication is successful
-        if (self.environment.communities[self.rule_set - 1].agents[agent_id].knowsWord(id_object, word)):
-            self.environment.communities[self.rule_set - 1].agents[agent_id].reduceAllWordsBut(id_object, word)
+        if (self.environment.communities[self.id_own_community].agents[agent_id].knowsWord(id_object, word)):
+            self.environment.communities[self.id_own_community].agents[agent_id].reduceAllWordsBut(id_object, word)
         else: 
             # Else the hearer learns the word
-            self.environment.communities[self.rule_set - 1].agents[agent_id].learnWord(id_object, word)
+            self.environment.communities[self.id_own_community].agents[agent_id].learnWord(id_object, word)
     
     def generateOwnWord(self, id_object):
-        generated_words = wg.generate_words(1, self.rule_set)
-        self.objects[id_object].append((1, generated_words[0], len(generated_words[0])))
+        generated_word = wg.generate_words(self.rule_set)
+        self.objects[id_object].append((1, generated_word, len(generated_word)))
         heapq.heapify(self.objects[id_object])
               
     
@@ -50,7 +51,7 @@ class Agent():
             if (word == self.objects[id_object][i][1]):
                 new_words.append((self.objects[id_object][i][0] + 1, word, len(word)))
             elif (int((self.objects[id_object][i][0] / 16)) >= 1):
-                new_words.append((int(self.objects[id_object][i][0] / 16), self.objects[id_object][i][1], len(self.objects[id_object][i][1])))
+                new_words.append((int(self.objects[id_object][i][0] / 2), self.objects[id_object][i][1], len(self.objects[id_object][i][1])))
         self.objects[id_object] = new_words
         heapq.heapify(self.objects[id_object])
     
