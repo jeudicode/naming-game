@@ -17,4 +17,4 @@ for i in range(3):
                 env = Environment(O_values[i], N_values[j], C_values[k])
                 env.communicateFirstStage()
                 env.communicateSecondStage()
-                dexpr.saveStatsObjectToCSV(i + 1, j + 1, k + 1, l, env.archive_stats[len(env.archive_stats) - 1])
+                dexpr.saveStatsObjectToCSV(i + 1, j + 1, k + 1, l, env.archive_stats)
