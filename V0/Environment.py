@@ -23,16 +23,15 @@ class Environment():
             if i == (many_communities - 1):
                 many_agents_per_community = many_agents
             many_agents = many_agents - many_agents_per_community
-            print(many_agents_per_community)
             self.communities.append(Community(i, many_objects, many_agents_per_community, self))
 
         # Save and print the current Stats
-        # self.saveCurrentStats()
-        # self.printStats()
+        self.saveCurrentStats()
 
     def communicateFirstStage(self, ):
         while(True):
             self.currentTime += 1
+            self.saveCurrentStats()
             self.passTimeFirstStage()
             if (self.converged_first_stage == True):
                 break
@@ -40,14 +39,15 @@ class Environment():
     def communicateSecondStage(self, ):
         self.communicateAmbassadors()
         self.saveFrequenciesAfterCommunication()
-        print("Ended Second Stage!")
-        for i in range(len(self.communities)):
-            print("//////////////")
-            print("--------------------")
-            print(self.communities[i].agents[0].objects)
-            print("--------------------")
-            print("//////////////")
-        print(self.currentTime)
+        # print("Ended Second Stage!")
+        # for i in range(len(self.communities)):
+        #     print("//////////////")
+        #     print("--------------------")
+        #     print(self.communities[i].agents[0].objects)
+        #     print("--------------------")
+        #     print("//////////////")
+        # print(self.archive_stats[len(self.archive_stats) - 1])
+
 
     def communicateAmbassadors(self, ):
         for i in range(len(self.communities)):
@@ -61,7 +61,6 @@ class Environment():
             for j in range(len(self.communities)):
                 if (j == i):
                     continue
-                self.currentTime += 1
                 self.communities[i].saveFrequencies(j)
             self.communities[i].purgeLessFrequentWords()
             self.communities[i].propagateWordList()
@@ -69,9 +68,7 @@ class Environment():
     def passTimeFirstStage(self, ):
         self.makeCommunicationFirstStage()
         self.checkConvergedFirstStage()
-        # self.saveCurrentStats()
-        # self.printStats()
-    
+        
     def makeCommunicationFirstStage(self, ):
     
         # Select Random community
@@ -98,59 +95,51 @@ class Environment():
                 self.communities[i].converged = True
             
         if (all_communities_converged == True):
-            print("Ended First Stage!")
-            print("////////////////////")
-            for i in range(len(self.communities)):
-                print("--------------------")
-                print(self.communities[i].agents[0].objects)
-                print("--------------------")
-            print("////////////////////")
+            # print("Ended First Stage!")
+            # print("////////////////////")
+            # for i in range(len(self.communities)):
+            #     print("--------------------")
+            #     print(self.communities[i].agents[0].objects)
+            #     print("--------------------")
+            # print("////////////////////")
             self.converged_first_stage = True
 
-    # def saveCurrentStats(self, ):
-        # currentState = {
-        #     "currentNumberOfWords": 0,
-        #     "maxNumberOfWords": 0,
-        #     "currentTime": 0,
-        #     "timeWithMaxWords": 0,
-        #     "convergenceTime": -1,
-        #     "maxNumberOfDifferentWords": 0,
-        #     "currentNumberOfDifferentWords": 0
-        # }
+    def saveCurrentStats(self, ):
+        currentState = {
+            "currentNumberOfWords": 0,
+            "maxNumberOfWords": 0,
+            "currentTime": 0,
+            "timeWithMaxWords": 0,
+            "convergenceTime": -1,
+            "maxNumberOfDifferentWords": 0,
+            "currentNumberOfDifferentWords": 0
+        }
 
-        # currentDifferentWords = set()
-        # allAgentsHaveWords = True
-        # for i in range(len(self.agents)):
-        #     if (len(self.agents[i].words) == 0):
-        #         allAgentsHaveWords = False 
-        #     for j in range(len(self.agents[i].words)):
-        #         currentDifferentWords.add(self.agents[i].words[j])
-        #     currentState["currentNumberOfWords"] += len(self.agents[i].words)
-        #     currentState["currentTime"] = self.currentTime
-
-        # currentState["currentNumberOfDifferentWords"] = len(currentDifferentWords)
-
-        # if (len(self.archive_stats) > 0):
-        #     # Update maximum number of Words
-        #     if (currentState["currentNumberOfWords"] > self.archive_stats[len(self.archive_stats) - 1]["maxNumberOfWords"]):
-        #         currentState["maxNumberOfWords"] = currentState["currentNumberOfWords"]
-        #         currentState["timeWithMaxWords"] = self.currentTime
-        #     else: 
-        #         currentState["maxNumberOfWords"] = self.archive_stats[len(self.archive_stats) - 1]["maxNumberOfWords"]
-        #         currentState["timeWithMaxWords"] = self.archive_stats[len(self.archive_stats) - 1]["timeWithMaxWords"]
-
-        #     # Update maximum number of different Words 
-        #     if (currentState["currentNumberOfDifferentWords"] > self.archive_stats[len(self.archive_stats) - 1]["maxNumberOfDifferentWords"]):
-        #         currentState["maxNumberOfDifferentWords"] = currentState["currentNumberOfDifferentWords"]
-        #     else: 
-        #         currentState["maxNumberOfDifferentWords"] = self.archive_stats[len(self.archive_stats) - 1]["maxNumberOfDifferentWords"]
+        currentDifferentWords = set()
+        for i in range(len(self.communities)):
+            for j in range(len(self.communities[i].agents)):
+                for k in range(len(self.communities[i].agents[j].objects)):
+                    for l in range(len(self.communities[i].agents[j].objects[k])):
+                        currentDifferentWords.add(self.communities[i].agents[j].objects[k][l][1])
+                    currentState["currentNumberOfWords"] += len(self.communities[i].agents[j].objects[k])
         
-        # if (allAgentsHaveWords and len(currentDifferentWords) == 1):
-        #     currentState["convergenceTime"] = self.currentTime
-        #     self.converged_first_stage = True
-        
-        # self.archive_stats.append(currentState)
+        currentState["currentTime"] = self.currentTime
+        currentState["convergenceTime"] = self.currentTime
+        currentState["currentNumberOfDifferentWords"] = len(currentDifferentWords)
 
-    # def printStats(self, ):
-    #     print("======== Time: " + str(self.currentTime) + " ========")
-    #     print(self.archive_stats[len(self.archive_stats) - 1])
+        if (len(self.archive_stats) > 0):
+            # Update maximum number of Words
+            if (currentState["currentNumberOfWords"] > self.archive_stats[len(self.archive_stats) - 1]["maxNumberOfWords"]):
+                currentState["maxNumberOfWords"] = currentState["currentNumberOfWords"]
+                currentState["timeWithMaxWords"] = self.currentTime
+            else: 
+                currentState["maxNumberOfWords"] = self.archive_stats[len(self.archive_stats) - 1]["maxNumberOfWords"]
+                currentState["timeWithMaxWords"] = self.archive_stats[len(self.archive_stats) - 1]["timeWithMaxWords"]
+
+            # Update maximum number of different Words 
+            if (currentState["currentNumberOfDifferentWords"] > self.archive_stats[len(self.archive_stats) - 1]["maxNumberOfDifferentWords"]):
+                currentState["maxNumberOfDifferentWords"] = currentState["currentNumberOfDifferentWords"]
+            else: 
+                currentState["maxNumberOfDifferentWords"] = self.archive_stats[len(self.archive_stats) - 1]["maxNumberOfDifferentWords"]
+        
+        self.archive_stats.append(currentState)
