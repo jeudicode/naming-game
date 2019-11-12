@@ -1,6 +1,20 @@
 from Environment import Environment
+from DataExporter import DataExporter
 
-# We create a new environment with 10 objects, 50 agents per community and 4 communities
-env = Environment(16, 201, 7)
-env.communicateFirstStage()
-env.communicateSecondStage()
+# Data exporter
+dexpr = DataExporter()
+
+# Experiment Values
+O_values = [4, 8, 16]
+N_values = [50, 100, 200]
+C_values = [4, 8, 16]
+
+# We create a new environment with objects, agents per community and communities
+for i in range(3):
+    for j in range(3):
+        for k in range(3):        
+            for l in range(100):
+                env = Environment(O_values[i], N_values[j], C_values[k])
+                env.communicateFirstStage()
+                env.communicateSecondStage()
+                dexpr.saveStatsObjectToCSV(i + 1, j + 1, k + 1, l, env.archive_stats[len(env.archive_stats) - 1])

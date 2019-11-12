@@ -30,19 +30,24 @@ class Community():
         for i in range(len(self.agents[0].objects)):
             self.environment.currentTime += 1
             self.agents[0].ambassadorCommunication(i, id_community)
+            self.environment.saveCurrentStats()
     
     def saveFrequencies(self, id_community):
         for i in range(len(self.agents[0].objects)):
             self.environment.currentTime += 1
             self.agents[0].saveFrequencies(i, id_community)
+            self.environment.saveCurrentStats()
     
     def purgeLessFrequentWords(self, ):
         for i in range(len(self.agents[0].objects)):
             self.environment.currentTime += 1
             self.agents[0].purgeLessFrequentWords(i)
+            self.environment.saveCurrentStats()
 
     def propagateWordList(self, ):
         for i in range(1,len(self.agents)):
             for j in range(len(self.agents[0].objects)):
                 self.environment.currentTime += 1
                 self.agents[i].objects[j] = self.agents[0].objects[j]
+                self.environment.saveCurrentStats()
+                
