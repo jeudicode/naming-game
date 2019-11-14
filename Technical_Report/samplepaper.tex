@@ -6,6 +6,9 @@
 %
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[spanish, fixlanguage]{babelbib}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -15,41 +18,57 @@
 
 \begin{document}
 %
-\title{Contribution Title\thanks{Supported by organization x.}}
+\title{Consejo de embajadores: una variación del Naming Game basado en comunidades}
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-\author{First Author\inst{1}\orcidID{0000-1111-2222-3333} \and
-Second Author\inst{2,3}\orcidID{1111-2222-3333-4444} \and
-Third Author\inst{3}\orcidID{2222--3333-4444-5555}}
+\author{Diego de Jesús Isla López \and
+Saul Ivan Rivas Vega}
 %
-\authorrunning{F. Author et al.}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
-\institute{Princeton University, Princeton NJ 08544, USA \and
-Springer Heidelberg, Tiergartenstr. 17, 69121 Heidelberg, Germany
-\email{lncs@springer.com}\\
-\url{http://www.springer.com/gp/computer-science/lncs} \and
-ABC Institute, Rupert-Karls-University Heidelberg, Heidelberg, Germany\\
-\email{\{abc,lncs\}@uni-heidelberg.de}}
+\institute{Universidad Nacional Autónoma de México, Ciudad Universitaria, Ciudad de México, México\\
+\email{\{abc,saul.ivan.rivas.vega\}@comunidad.unam.mx}}
 %
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-The abstract should briefly summarize the contents of the paper in
-150--250 words.
+El Naming Game es una simulación basada en agentes los cuales con un protocolo de comunicación y una memoria buscan llegar a un acuerdo sobre que única palabra almacenar para nombrar a un objeto. En el presente trabajo extendemos las características del diseño original propuesto por Baronchelli, con el propósito de reportar y analizar las diferencias en los parámetros de estudio durante la simulación. Se llevaron a cabo una serie de experimentos por cada combinación posible dentro de un espacio reducido de valores y la media de resultados son los tomados en cuenta para el análisis. Los resultados mostraron que... De igual forma presentamos nuestras conclusiones y trabajo a futuro. 
 
-\keywords{First keyword  \and Second keyword \and Another keyword.}
+\keywords{Naming Game  \and Comunicación \and Agentes \and Inteligencia Artificial \and Simulación.}
 \end{abstract}
 %
 %
 %
-\section{First Section}
-\subsection{A Subsection Sample}
-Please note that the first paragraph of a section or subsection is
+\section {Introducción}
+Se han realizado trabajos con experimentos basados en la hipótesis de que el lenguaje es un sistema adaptativo que se forma así mismo a través de un proceso cultural auto-organizado~\cite{ref_article1}.
+
+Ahora revisemos la definición de los juegos del lenguaje que fueron propuestos por primera vez en las investigaciones filosóficas de Ludwig Wittgenstein en 1967~\cite{ref_article1}. Su modelo consiste en considerar a un constructor y a un asistente con distintas herramientas y recursos los cuales el constructor debía solicitar al asistente, lo cual llevaba a comunicarse en un lenguaje primitivo. Sin embargo Wittgenstein no creía que así era como se comportaba el lenguaje en el mundo real. Lo que el pensaba era que podían reconocerse particularidades de la lingüística que si se asemejan al mundo real.
+
+Posteriormente se realizaron implementaciones de variada complejidad como lo son: \textit{Naming Games}~\cite{ref_article1}, \textit{Guessing Games}~\cite{ref_article1}, \textit{Descripting Games}~\cite{ref_article1}, etc.
+\section{Antecedentes}
+El trabajo propuesto en Naming Games~\cite{ref_article1} inspiró el trabajo de Baronchelli~\cite{ref_article1} para desarrollar un modelo de comunicación entre agentes. En dicho modelo se utilizaba el siguiente protocolo de comunicación entre el hablante y el escucha que son 2 agentes seleccionados al azar:
+\begin{itemize}
+	\item El hablante selecciona un objeto del contexto actual
+	\item El hablante toma una palabra de su inventario para referirse al objeto, en caso de no tener una palabra, crea una nueva.
+	\item El hablante comunica la palabra seleccionada al receptor
+	\item Si el escucha tiene en su inventario la palabra que le comunicó el hablante, la comunicación se considera exitosa lo que hace que tanto el hablante como el escucha borren su inventario de palabras para el objeto con excepción de la palabra que ambos conocen.
+	\item En caso contrario el escucha almacena en su inventario de palabras la palabra que le comunicó el hablante.
+\end{itemize}
+\section{Diseño Propuesto}
+\subsection{Protocolos de comunicación}
+\subsection{Generación de palabras}
+\subsection{Evaluación de preferencia}
+\subsection{Convergencia}
+\section{Experimentos}
+Descripción de las distintas combinaciones.
+\section{Resultados}
+\section{Discusión y Conclusiones}
+\section{Introducción}
+\subsection{A Subsection Sample}Please note that the first paragraph of a section or subsection is
 not indented. The first paragraph that follows a table, figure,
 equation etc. does not need an indent, either.
 
