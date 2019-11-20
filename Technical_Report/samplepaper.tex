@@ -31,13 +31,12 @@ Saul Ivan Rivas Vega}
 % If there are more than two authors, 'et al.' is used.
 %
 \institute{Universidad Nacional Autónoma de México, Ciudad Universitaria, Ciudad de México, México\\
-\email{\{abc,saul.ivan.rivas.vega\}@comunidad.unam.mx}}
+\email{\{diego.isla,saul.ivan.rivas.vega\}@comunidad.unam.mx}}
 %
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-El Naming Game es una simulación basada en agentes los cuales con un protocolo de comunicación y una memoria buscan llegar a un acuerdo sobre que única palabra almacenar para nombrar a un objeto. En el presente trabajo extendemos las características del diseño original propuesto por Baronchelli, con el propósito de reportar y analizar las diferencias en los parámetros de estudio durante la simulación. Se llevaron a cabo una serie de experimentos por cada combinación posible dentro de un espacio reducido de valores y la media de resultados son los tomados en cuenta para el análisis. Los resultados mostraron que... De igual forma presentamos nuestras conclusiones y trabajo a futuro. 
-
+El Naming Game es una simulación basada en agentes los cuales con un protocolo de comunicación y una memoria buscan llegar a un acuerdo sobre que única palabra almacenar para nombrar a un objeto. En el presente trabajo extendemos las características del diseño original propuesto por Baronchelli, con el propósito de reportar y analizar las diferencias en los parámetros de estudio durante la simulación. Se llevaron a cabo una serie de experimentos por cada combinación posible dentro de un espacio reducido de valores y la media de resultados son los tomados en cuenta para el análisis. Los resultados son congruentes con los reportes de Baronchelli, además de que se puede observar comportamientos especiales.
 \keywords{Naming Game  \and Comunicación \and Agentes \and Inteligencia Artificial \and Simulación.}
 \end{abstract}
 %
@@ -46,7 +45,7 @@ El Naming Game es una simulación basada en agentes los cuales con un protocolo 
 \section {Introducción}
 Se han realizado trabajos con experimentos basados en la hipótesis de que el lenguaje es un sistema adaptativo que se forma así mismo a través de un proceso cultural auto-organizado~\cite{ref_article1}.
 
-Ahora revisemos la definición de los juegos del lenguaje que fueron propuestos por primera vez en las investigaciones filosóficas de Ludwig Wittgenstein en 1967~\cite{ref_article1}. Su modelo consiste en considerar a un constructor y a un asistente con distintas herramientas y recursos los cuales el constructor debía solicitar al asistente, lo cual llevaba a comunicarse en un lenguaje primitivo. Sin embargo Wittgenstein no creía que así era como se comportaba el lenguaje en el mundo real. Lo que el pensaba era que podían reconocerse particularidades de la lingüística que si se asemejan al mundo real.
+Los juegos del lenguaje fueron propuestos por primera vez en las investigaciones filosóficas de Ludwig Wittgenstein en 1967~\cite{ref_article1}. Su modelo consiste en considerar a un constructor y a un asistente con distintas herramientas y recursos los cuales el constructor debía solicitar al asistente, lo cual llevaba a comunicarse en un lenguaje primitivo. Sin embargo, Wittgenstein no creía que así era como se comportaba el lenguaje en el mundo real. Lo que el pensaba era que podían reconocerse particularidades de la lingüística que si se asemejan al mundo real.
 
 Posteriormente se realizaron implementaciones de variada complejidad como lo son: \textit{Naming Games}~\cite{ref_article1}, \textit{Guessing Games}~\cite{ref_article1}, \textit{Descripting Games}~\cite{ref_article1}, etc.
 \section{Antecedentes}
@@ -58,12 +57,36 @@ El trabajo propuesto en Naming Games~\cite{ref_article1} inspiró el trabajo de 
 	\item Si el escucha tiene en su inventario la palabra que le comunicó el hablante, la comunicación se considera exitosa lo que hace que tanto el hablante como el escucha borren su inventario de palabras para el objeto con excepción de la palabra que ambos conocen.
 	\item En caso contrario el escucha almacena en su inventario de palabras la palabra que le comunicó el hablante.
 \end{itemize}
+
 \section{Diseño Propuesto}
+
+La variante del \textit{naming game} propuesta consiste en tener comunidades con un número uniforme de miembros. Cada comunidad utiliza un conjunto de reglas para generar palabras diferentes con las cuales designarán a cada uno de los objetos. Cada comunidad decidirá la palabra que le asignará a cada objeto y una vez que todas han llegado a un consenso, los embajadores de cada comunidad se reúnen y entre todos presentan las palabras de sus comunidades y votan las palabras que usarán de ahora en adelante. Una vez que se deciden las palabras finales, los embajadores regresan a sus respectivas comunidades y enseñan las palabras a los demás miembros.
+
 \subsection{Protocolos de comunicación}
+
+Se tienen dos protocolos de comunicación:
+
+\begin{enumerate}
+	\item Comunicación entre miembros de la misma comunidad
+	\item Comunicación entre embajadores
+\end{enumerate}
+
+
 \subsection{Generación de palabras}
+
+
+Se tiene un conjunto de cuatro reglas de generación de palabras. 
+
+
 \subsection{Evaluación de preferencia}
+
+Entre embajadadores, se evalúa la preferencia al recibir una palabra de una comunidad ajena. Esto se hace comparando la palabra recibida con respecto a las reglas de generación del receptor. Por el momento se hace una evaluación simple que favorece la elección de palabras muy largas.
 \subsection{Convergencia}
+
+
 \section{Experimentos}
+
+
 Descripción de las distintas combinaciones.
 \section{Resultados}
 \section{Discusión y Conclusiones}
