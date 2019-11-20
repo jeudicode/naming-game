@@ -18,7 +18,8 @@
 
 \begin{document}
 %
-\title{Consejo de embajadores: una variación del Naming Game basado en comunidades}
+\title{Consejo de embajadores}
+\subtitle{Una variación del Naming Game basado en comunidades}
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
@@ -64,16 +65,51 @@ La variante del \textit{naming game} propuesta consiste en tener comunidades con
 
 \subsection{Protocolos de comunicación}
 
-Se tienen dos protocolos de comunicación:
+Se tienen tres protocolos de comunicación uno por cada etapa del sistema:
 
 \begin{enumerate}
-	\item Comunicación entre miembros de la misma comunidad
-	\item Comunicación entre embajadores
+	\item Comunicación entre miembros de una misma comunidad.
+	\item Comunicación entre embajadores.
+	\item Comunicación del embajador con el resto de su comunidad.
+\end{enumerate}
+\subsubsection{Primera Etapa}
+\paragraph{Comunicación entre miembros de una comunidad}
+En esta etapa del sistema las comunicaciones se realizan solamente entre miembros de una misma comunidad y termina hasta que todas las comunidades converjan internamente.
+Se sigue el siguiente protocolo de comunicación:
+\begin{enumerate}
+	\item Tomar 1 comunidad aleatoriamente que no haya convergido internamente aún.
+	\item Seleccionar aleatoriamente al agente que escucha y el agente que habla.
+	\item Seleccionar el objeto aleatoriamente.
+	\item Si el hablante no tiene palabras en su memoria, crea una con base en su regla de generación y la almacena con frecuencia = 1.
+	\item El hablante toma la palabra con mayor frecuencia en su memoria.
+	\item Si el escucha no conoce la palabra la almacena con una frecuencia = 1.
+	\item Si el escucha si conoce la palabra aumenta en 1 su frecuencia y reduce por un factor de olvido (16, suelo) las demás palabras en su memoria.
+	\item Si alguna palabra llega a 0 se elimina de su memoria. 
 \end{enumerate}
 
+\subsubsection{Segunda Etapa}
+En esta etapa del sistema las comunicaciones se realizan solamente entre los embajadores. Existe exactamente un embajador por comunidad, y este puede ser cualquier miembro de la comunidad puesto que todos terminaron con la misma lista de palabras. Comienzan las comunicaciones al finalizar la etapa anterior y terminan hasta que todos los embajadores conozcan la palabra de los demás embajadores.
+Se sigue el siguiente protocolo de comunicación:
+\begin{enumerate}
+	\item El embajador de cada comunidad puede ser cualquiera, se toma al primero de cada comunidad.
+	\item Se fuerza la comunicación de todos los embajadores como hablante con cada uno de los otros embajadores como escuchas con cada uno de los objetos.
+	\item En cada una de las comunicaciones el embajador hablante comunica la única palabra que tiene actualmente en su memoria.
+	\item El escucha evalúa la preferencia por la nueva palabra y si la prefiere en lugar de su palabra actual, la reemplaza, y en caso contrario, la ignora.
+	\item Posterior a que todos los embajadores se hayan comunicado y escogieran su palabra preferida, vuelven a comunicarse entre todos.
+	\item El hablante escoge su palabra que seleccionó como favorita.
+	\item Si el escucha si conoce la palabra aumenta en 1 su frecuencia, en caso contrario la agrega con frecuencia = 1.
+	\item Todos los embajadores borran todas las palabras de su memoria, con excepción de la palabra más frecuente en el consejo.
+\end{enumerate}
+\subsubsection{Tercera Etapa}
+Esta es la etapa final del sistema en la que solamente los embajadores propagan la lista de palabras que se obtuvo del consejo y los agentes dentro de la comunidad solo reemplazan la lista que tenían con la del embajador. Las comunicaciones solo se llevan a cabo con el embajador como el hablante y los demás agentes de su comunidad como oyentes. Terminan las comunicaciones cuando todos los agentes de todas las comunidades terminan con la misma lista de palabras.
+Se sigue el siguiente protocolo de comunicación:
+\begin{enumerate}
+	\item El embajador de cada comunidad Comunica su palabra de cada objeto a un miembro de su comunidad con quien no se haya comunicado aún.
+	\item El escucha reemplaza la palabra para cada objeto con la que le comunica el embajador.
+\end{enumerate}
 
 \subsection{Generación de palabras}
-
+Existe un diccionario inicial de sílabas tomadas a partir de concatenar las vocales con cada una de las consonantes del alfabeto. Una \textit{regla de generación} consiste en una tupla $(A,cantidad\_s,separador)$ en donde $A$ es un subconjunto del diccionario de sílabas, $cantidad\_s$ es un entero positivo que determina la cantidad de sílabas que se usarán para formar la palabra y el $separador$ es un elemento del diccionario el cual se coloca entre cada silaba que formó a la palabra.
 
 Se tiene un conjunto de cuatro reglas de generación de palabras. 
 
