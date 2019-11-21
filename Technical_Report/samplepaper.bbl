@@ -9,6 +9,11 @@ Baronchelli, A., Felici, M., Loreto, V., Caglioti, E., Steels, L.: Sharp
   Statistical Mechanics: Theory and Experiment  \textbf{2006}(06),
   P06014--P06014 (jun 2006). \doi{10.1088/1742-5468/2006/06/p06014}
 
+\bibitem{article_beule}
+De~Beule, J., Vylder, B., Belpaeme, T.: A cross-situational learning algorithm
+  for damping homonymy in the guessing game. Proceedings of the Xth Conference
+  on Artificial Life  (01 2006)
+
 \bibitem{as474369}
 Nolet, Y.: Ludwig wittgenstein, philosophische untersuchungen. philosophical
   investigations. translated by g. e. m. anscombe  (1968)
@@ -18,5 +23,9 @@ Steels, L., McIntyre, A.: {Spatially Distributed Naming Games}. Advances in
   Complex Systems (ACS)  \textbf{1}(04),  301--323 (1999).
   \doi{10.1142/S021952599800020X},
   \url{https://ideas.repec.org/a/wsi/acsxxx/v01y1999i04ns021952599800020x.html}
+
+\bibitem{article_van}
+van Trijp, R.: The emergence of semantic roles in fluid construction grammar
+  (02 2008)
 
 \end{thebibliography}
