@@ -67,7 +67,7 @@ La variante del \textit{naming game} propuesta consiste en tener comunidades con
 Se tienen dos protocolos de comunicación:
 
 \begin{enumerate}
-	\item Comunicación entre miembros de la misma comunidad
+	\item \textbf{Comunicación entre miembros de la misma comunidad:} Los miembros de cada comunidad generan sus palabras de acuerdo a la regla de la comunidad. Si el oyente no ha escuchado la palabra antes, la almacena en su memoria y le asigna una frecuencia de $1$. Cada vez que vuelva a escuchar la palabra, esta frecuencia aumenta, reduciendo la demás por un factor de olvido. Se desechan las palabras que llegan a $0$.
 	\item Comunicación entre embajadores
 \end{enumerate}
 
@@ -80,8 +80,14 @@ Se tiene un conjunto de cuatro reglas de generación de palabras.
 
 \subsection{Evaluación de preferencia}
 
-Entre embajadadores, se evalúa la preferencia al recibir una palabra de una comunidad ajena. Esto se hace comparando la palabra recibida con respecto a las reglas de generación del receptor. Por el momento se hace una evaluación simple que favorece la elección de palabras muy largas.
+Entre embajadadores, se evalúa la preferencia al recibir una palabra de una comunidad ajena. Esto se hace comparando la palabra recibida con respecto a las reglas de generación del receptor. Por el momento se hace una evaluación simple que favorece la elección de palabras muy largas. 
+
+
+
+
 \subsection{Convergencia}
+
+Los embajadores se comunican unos con otros 
 
 
 \section{Experimentos}
