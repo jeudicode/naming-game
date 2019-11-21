@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{Baronchelli_2006}
+Baronchelli, A., Felici, M., Loreto, V., Caglioti, E., Steels, L.: Sharp
+  transition towards shared vocabularies in multi-agent systems. Journal of
+  Statistical Mechanics: Theory and Experiment  \textbf{2006}(06),
+  P06014--P06014 (jun 2006). \doi{10.1088/1742-5468/2006/06/p06014}
+
+\bibitem{as474369}
+Nolet, Y.: Ludwig wittgenstein, philosophische untersuchungen. philosophical
+  investigations. translated by g. e. m. anscombe  (1968)
+
+\bibitem{RePEc:wsi:acsxxx:v:01:y:1999:i:04:n:s021952599800020x}
+Steels, L., McIntyre, A.: {Spatially Distributed Naming Games}. Advances in
+  Complex Systems (ACS)  \textbf{1}(04),  301--323 (1999).
+  \doi{10.1142/S021952599800020X},
+  \url{https://ideas.repec.org/a/wsi/acsxxx/v01y1999i04ns021952599800020x.html}
+
+\end{thebibliography}

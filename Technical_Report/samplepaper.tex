@@ -9,6 +9,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish,es-nodecimaldot]{babel}
 \usepackage[spanish, fixlanguage]{babelbib}
+\bibliographystyle{splncs04}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -25,7 +26,7 @@
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-\author{Diego de Jesús Isla López \and
+\author{Diego de Jesús Isla López y
 Saul Ivan Rivas Vega}
 %
 % First names are abbreviated in the running head.
@@ -44,13 +45,13 @@ El Naming Game es una simulación basada en agentes los cuales con un protocolo 
 %
 %
 \section {Introducción}
-Se han realizado trabajos con experimentos basados en la hipótesis de que el lenguaje es un sistema adaptativo que se forma así mismo a través de un proceso cultural auto-organizado~\cite{ref_article1}.
+Se han realizado trabajos con experimentos basados en la hipótesis de que el lenguaje es un sistema adaptativo que se forma así mismo a través de un proceso cultural auto-organizado~\cite{Baronchelli_2006}.
 
-Los juegos del lenguaje fueron propuestos por primera vez en las investigaciones filosóficas de Ludwig Wittgenstein en 1967~\cite{ref_article1}. Su modelo consiste en considerar a un constructor y a un asistente con distintas herramientas y recursos los cuales el constructor debía solicitar al asistente, lo cual llevaba a comunicarse en un lenguaje primitivo. Sin embargo, Wittgenstein no creía que así era como se comportaba el lenguaje en el mundo real. Lo que el pensaba era que podían reconocerse particularidades de la lingüística que si se asemejan al mundo real.
+Los juegos del lenguaje fueron propuestos por primera vez en las investigaciones filosóficas de Ludwig Wittgenstein en 1967~\cite{as474369}. Su modelo consiste en considerar a un constructor y a un asistente con distintas herramientas y recursos los cuales el constructor debía solicitar al asistente, lo cual llevaba a comunicarse en un lenguaje primitivo. Sin embargo, Wittgenstein no creía que así era como se comportaba el lenguaje en el mundo real. Lo que el pensaba era que podían reconocerse particularidades de la lingüística que si se asemejan al mundo real.
 
-Posteriormente se realizaron implementaciones de variada complejidad como lo son: \textit{Naming Games}~\cite{ref_article1}, \textit{Guessing Games}~\cite{ref_article1}, \textit{Descripting Games}~\cite{ref_article1}, etc.
+Posteriormente se realizaron implementaciones de variada complejidad como lo son: \textit{Naming Games}~\cite{RePEc:wsi:acsxxx:v:01:y:1999:i:04:n:s021952599800020x}, \textit{Guessing Games}~\cite{Baronchelli_2006}, \textit{Descripting Games}~\cite{Baronchelli_2006}, etc.
 \section{Antecedentes}
-El trabajo propuesto en Naming Games~\cite{ref_article1} inspiró el trabajo de Baronchelli~\cite{ref_article1} para desarrollar un modelo de comunicación entre agentes. En dicho modelo se utilizaba el siguiente protocolo de comunicación entre el hablante y el escucha que son 2 agentes seleccionados al azar:
+El trabajo propuesto en Naming Games~\cite{Baronchelli_2006} inspiró el trabajo de Baronchelli~\cite{Baronchelli_2006} para desarrollar un modelo de comunicación entre agentes. En dicho modelo se utilizaba el siguiente protocolo de comunicación entre el hablante y el escucha que son 2 agentes seleccionados al azar:
 \begin{itemize}
 	\item El hablante selecciona un objeto del contexto actual
 	\item El hablante toma una palabra de su inventario para referirse al objeto, en caso de no tener una palabra, crea una nueva.
@@ -61,12 +62,17 @@ El trabajo propuesto en Naming Games~\cite{ref_article1} inspiró el trabajo de 
 
 \section{Diseño Propuesto}
 
-La variante del \textit{naming game} propuesta consiste en tener comunidades con un número uniforme de miembros. Cada comunidad utiliza un conjunto de reglas para generar palabras diferentes con las cuales designarán a cada uno de los objetos. Cada comunidad decidirá la palabra que le asignará a cada objeto y una vez que todas han llegado a un consenso, los embajadores de cada comunidad se reúnen y entre todos presentan las palabras de sus comunidades y votan las palabras que usarán de ahora en adelante. Una vez que se deciden las palabras finales, los embajadores regresan a sus respectivas comunidades y enseñan las palabras a los demás miembros.
+La variante del \textit{naming game} propuesta consiste en tener comunidades con un número uniforme de miembros. Cada comunidad utiliza un conjunto de reglas para generar palabras diferentes con las cuales designarán a cada uno de los objetos. Cada comunidad decidirá la palabra que le asignará a cada objeto y una vez que todas han llegado a un consenso, los embajadores de cada comunidad se reúnen y entre todos presentan las palabras de sus comunidades y votan las palabras que usarán de ahora en adelante. Una vez que se deciden las palabras finales, los embajadores regresan a sus respectivas comunidades y enseñan las palabras a los demás miembros.\\
+Las etapas en el modelo propuesto se pueden visualizar mejor en la figura \ref{fig0}.
+\begin{figure}
+	\includegraphics[width=\textwidth]{modelo1.png}
+	\caption{Etapas en el modelo.}
+	\label{fig0}
+\end{figure}
 
 \subsection{Protocolos de comunicación}
 
 Se tienen tres protocolos de comunicación uno por cada etapa del sistema:
-
 \begin{enumerate}
 	\item Comunicación entre miembros de una misma comunidad.
 	\item Comunicación entre embajadores.
@@ -109,93 +115,146 @@ Se sigue el siguiente protocolo de comunicación:
 \end{enumerate}
 
 \subsection{Generación de palabras}
-Existe un diccionario inicial de sílabas tomadas a partir de concatenar las vocales con cada una de las consonantes del alfabeto. Una \textit{regla de generación} consiste en una tupla $(A,cantidad\_s,separador)$ en donde $A$ es un subconjunto del diccionario de sílabas, $cantidad\_s$ es un entero positivo que determina la cantidad de sílabas que se usarán para formar la palabra y el $separador$ es un elemento del diccionario el cual se coloca entre cada silaba que formó a la palabra.
-
-Se tiene un conjunto de cuatro reglas de generación de palabras. 
-
-
+Existe un diccionario inicial de sílabas tomadas a partir de concatenar las vocales con cada una de las consonantes del alfabeto. Una \textit{regla de generación} consiste en una tupla $(A,cantidad\_s,separador)$ en donde $A$ es un subconjunto del diccionario de sílabas, $cantidad\_s$ es un entero positivo que determina la cantidad de sílabas que se usarán para formar la palabra y el $separador$ es un elemento del diccionario el cual se coloca entre cada sílaba que se agrega a la palabra durante su formación.\\
+Tomando la regla $(\{"ke", "li"\}, 3, "pa")$, puede formarse la palabra \textit{kepakepalipa}.\\
+Cada comunidad cuenta con su propia regla de generación determinada antes del inicio de la primera etapa.
 \subsection{Evaluación de preferencia}
-
-Entre embajadadores, se evalúa la preferencia al recibir una palabra de una comunidad ajena. Esto se hace comparando la palabra recibida con respecto a las reglas de generación del receptor. Por el momento se hace una evaluación simple que favorece la elección de palabras muy largas.
+Entre embajadores, se evalúa la preferencia al recibir una palabra de una comunidad ajena. Esto se hace comparando la palabra recibida con respecto a las reglas de generación del receptor. Por el momento se hace una evaluación simple, para saber que tanto prefiere una palabra un agente se cuentan cuantas sílabas de la regla de generación se encuentran en la palabra, mientras mas sílabas tenga en común mayor será su preferencia por la palabra.
+Por ejemplo si un agente tiene en su comunidad la regla de generación $(\{"ke", "li"\}, 3, "pa")$ va a tener una preferencia por la palabra \textit{sigalite} con valor a $1$ puesto que solo tienen en común la sílaba \textit{li}, ahora si tomamos en cuenta la palabra \textit{lilireke}, tendrá una preferencia con valor igual a $3$ puesto que comparten \textit{li} y esta presente 2 veces, y además comparten la sílaba \textit{ke}.
 \subsection{Convergencia}
-
-
+La convergencia la definimos como el momento en que todos los agentes en todas las comunidades tienen la misma palabra para referirse a cada objeto, es decir tienen la misma lista de palabras.
+\pagebreak
 \section{Experimentos}
-
-
-Descripción de las distintas combinaciones.
-\section{Resultados}
-\section{Discusión y Conclusiones}
-\section{Introducción}
-\subsection{A Subsection Sample}Please note that the first paragraph of a section or subsection is
-not indented. The first paragraph that follows a table, figure,
-equation etc. does not need an indent, either.
-
-Subsequent paragraphs, however, are indented.
-
-\subsubsection{Sample Heading (Third Level)} Only two levels of
-headings should be numbered. Lower level headings remain unnumbered;
-they are formatted as run-in headings.
-
-\paragraph{Sample Heading (Fourth Level)}
-The contribution should contain no more than four levels of
-headings. Table~\ref{tab1} gives a summary of all heading levels.
-
-\begin{table}
-\caption{Table captions should be placed above the
-tables.}\label{tab1}
-\begin{tabular}{|l|l|l|}
-\hline
-Heading level &  Example & Font size and style\\
-\hline
-Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
-1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
-2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
-3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
-4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
-\hline
-\end{tabular}
+Los parámetros que tomamos en cuenta para los experimentos son: La cantidad de agentes totales ($N$), la cantidad de objetos ($O$), y la cantidad de comunidades ($C$). Los agentes son distribuidos equitativamente en las comunidades. En la sección de resultados mostramos los promedios de 100 ejecuciones del programa que tiene algunos de los posibles valores que se muestran en el cuadro \ref{tab0}. 
+\begin{table}[h]
+	\centering
+	\caption{Distintos valores para los experimentos.}\label{tab0}
+	\begin{tabular}{|l|l|}
+		\hline
+		Parámetro &  Valores  \\
+		\hline
+		N &  50, 100, 200 \\
+		\hline
+		O &  4, 8, 16 \\
+		\hline
+		C &  4, 8, 16 \\
+		\hline
+	\end{tabular}
 \end{table}
-
-
-\noindent Displayed equations are centered and set on a separate
-line.
-\begin{equation}
-x + y = z
-\end{equation}
-Please try to avoid rasterized images for line-art diagrams and
-schemas. Whenever possible, use vector graphics instead (see
-Fig.~\ref{fig1}).
-
-\begin{figure}
-\includegraphics[width=\textwidth]{fig1.eps}
-\caption{A figure caption is always placed below the illustration.
-Please note that short captions are centered, while long ones are
-justified by the macro package automatically.} \label{fig1}
+\section{Resultados}
+\subsection{50 agentes en 4 comunidades con 4 objetos}
+Descripción.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figure_111_TotalWords.png}
+	\caption{Número de palabras totales.}
+	\label{fig_000}
 \end{figure}
-
-\begin{theorem}
-This is a sample theorem. The run-in heading is set in bold, while
-the following text appears in italics. Definitions, lemmas,
-propositions, and corollaries are styled the same way.
-\end{theorem}
-%
-% the environments 'definition', 'lemma', 'proposition', 'corollary',
-% 'remark', and 'example' are defined in the LLNCS documentclass as well.
-%
-\begin{proof}
-Proofs, examples, and remarks have the initial word in italics,
-while the following text appears in normal font.
-\end{proof}
-For citations of references, we prefer the use of square brackets
-and consecutive numbers. Citations using labels or the author/year
-convention are also acceptable. The following bibliography provides
-a sample reference list with entries for journal
-articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
-book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
-and a homepage~\cite{ref_url1}. Multiple citations are grouped
-\cite{ref_article1,ref_lncs1,ref_book1},
-\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figure_111_TotalDifferentWords.png}
+	\caption{Número de palabras diferentes totales.}
+	\label{fig_001}
+\end{figure}
+\pagebreak
+\\
+\subsection{50 agentes en 16 comunidades con 4 objetos}
+Descripción.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figure_113_TotalWords.png}
+	\caption{Número de palabras totales.}
+	\label{fig_002}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figure_113_TotalDifferentWords.png}
+	\caption{Número de palabras diferentes totales.}
+	\label{fig_003}
+\end{figure}
+\pagebreak
+\\
+\subsection{50 agentes en 4 comunidades con 16 objetos}
+Descripción.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figure_311_TotalWords.png}
+	\caption{Número de palabras totales.}
+	\label{fig_004}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figure_311_TotalDifferentWords.png}
+	\caption{Número de palabras diferentes totales.}
+	\label{fig_005}
+\end{figure}
+\pagebreak
+\\
+\subsection{200 agentes en 16 comunidades con 16 objetos}
+Descripción.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figure_333_TotalWords.png}
+	\caption{Número de palabras totales.}
+	\label{fig_006}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Figure_333_TotalDifferentWords.png}
+	\caption{Número de palabras diferentes totales.}
+	\label{fig_007}
+\end{figure}
+\\
+\subsection{Tablas de resultados}
+\paragraph{}Descripción.
+\begin{table}[h]
+	\centering
+	\caption{Resultados con 4 Comunidades y 4 objetos, variando N.}\label{tab1}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		N &  T conv & T max Words & Max Words & max dif Words & T conv / T max  \\
+		\hline
+		50 & 4154.72 &   527.76 & 366.98 & 96.8 & 8.0205 \\
+		\hline
+		100 & 9799.31 &   1255.67 & 891.11 & 193.89 & 7.8966\\
+		\hline
+		200 & 22140.05 &  2868.27 & 2148.05 & 392.86 & 7.7545 \\
+		\hline
+	\end{tabular}
+\end{table}
+\paragraph{}Descripción.
+\begin{table}[h]
+	\centering
+	\caption{Resultados con 8 Comunidades y 4 objetos, variando N.}\label{tab2}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		N &  T conv & T max Words & Max Words & max dif Words & T conv / T max  \\
+		\hline
+		50 & 4154.72 &   527.76 & 366.98 & 96.8 & 8.0205 \\
+		\hline
+		100 & 9799.31 &   1255.67 & 891.11 & 193.89 & 7.8966\\
+		\hline
+		200 & 22140.05 &  2868.27 & 2148.05 & 392.86 & 7.7545 \\
+		\hline
+	\end{tabular}
+\end{table}
+\section{Discusión y Conclusiones}
+\paragraph{Impacto del número  de objetos}
+El número de objetos hace aumentar el tiempo de convergencia. Se observa que el tiempo de convergencia es proporcional conforme aumenta el número de objetos. Aumenta el valor del Tiempo de Convergencia sobre el Tiempo con el número máximo de palabras.
+\paragraph{Impacto de variaciones en comunidades}
+El número de comunidades no afecta al tiempo de convergencia, puesto que se ocupa una distribución equitativa. Aumenta de manera significativa el valor del Tiempo de Convergencia sobre el Tiempo con el número máximo de palabras.
+\paragraph{Impacto de variación de agentes}
+El tiempo de convergencia con respecto a los agentes y objetos, es proporcional. Disminuye el valor del Tiempo de Convergencia sobre el Tiempo con el número máximo de palabras.
+\paragraph{Preservación de propiedades del algoritmo original}
+Se observa que los resultados obtenidos son congruentes con las observaciones de Baronchelli.
+\paragraph{Consideraciones futuras}
+\begin{itemize}
+	\item Probar con reglas más robustas de generación de palabras.
+	\item Tener una base mayor de reglas diferentes y probar diferentes combinaciones.
+	\item Una evaluación de preferencia que involucre otros factores de la regla de generación resultante en el punto anterior.
+	\item Una variación con el factor de olvido.
+	\item Reglas auxiliares para la comunicación entre los embajadores.
+\end{itemize}
 %
 % ---- Bibliography ----
 %
@@ -205,25 +264,5 @@ and a homepage~\cite{ref_url1}. Multiple citations are grouped
 % \bibliographystyle{splncs04}
 % \bibliography{mybibliography}
 %
-\begin{thebibliography}{8}
-\bibitem{ref_article1}
-Author, F.: Article title. Journal \textbf{2}(5), 99--110 (2016)
-
-\bibitem{ref_lncs1}
-Author, F., Author, S.: Title of a proceedings paper. In: Editor,
-F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
-Springer, Heidelberg (2016). \doi{10.10007/1234567890}
-
-\bibitem{ref_book1}
-Author, F., Author, S., Author, T.: Book title. 2nd edn. Publisher,
-Location (1999)
-
-\bibitem{ref_proc1}
-Author, A.-B.: Contribution title. In: 9th International Proceedings
-on Proceedings, pp. 1--2. Publisher, Location (2010)
-
-\bibitem{ref_url1}
-LNCS Homepage, \url{http://www.springer.com/lncs}. Last accessed 4
-Oct 2017
-\end{thebibliography}
+\bibliography{main}
 \end{document}
