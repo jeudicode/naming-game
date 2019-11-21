@@ -10,6 +10,8 @@
 \usepackage[spanish,es-nodecimaldot]{babel}
 \usepackage[spanish, fixlanguage]{babelbib}
 \bibliographystyle{splncs04}
+\usepackage{float}
+
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -143,14 +145,16 @@ Los parámetros que tomamos en cuenta para los experimentos son: La cantidad de 
 \end{table}
 \section{Resultados}
 \subsection{50 agentes en 4 comunidades con 4 objetos}
-Descripción.
-\begin{figure}[h]
+
+En este experimento se observa un comportamiento de la convergencia prácticamente uniforme, tanto para el número de palabras totales como para el total de palabras diferentes. Ambas gráficas presentan una forma similar, lo que muestra que el comportamiento del algoritmo es uniforme para este caso.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.65\textwidth]{Figure_111_TotalWords.png}
 	\caption{Número de palabras totales.}
 	\label{fig_000}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.65\textwidth]{Figure_111_TotalDifferentWords.png}
 	\caption{Número de palabras diferentes totales.}
@@ -159,14 +163,16 @@ Descripción.
 \pagebreak
 \\
 \subsection{50 agentes en 16 comunidades con 4 objetos}
-Descripción.
-\begin{figure}[h]
+
+En este experimento se observa un comportamiento diferente al anterior. En el caso del total de palabras, a pesar de que la forma de la gráfica es similar a los casos anteriores, se puede ver que el descenso es menos pronunciado y en la parte más plana hay cierto ruido presente. En la gráfica del total de palabras diferentes, observamos una especie de deformación en el descenso hacia la convergencia. 
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.65\textwidth]{Figure_113_TotalWords.png}
 	\caption{Número de palabras totales.}
 	\label{fig_002}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.65\textwidth]{Figure_113_TotalDifferentWords.png}
 	\caption{Número de palabras diferentes totales.}
@@ -175,14 +181,16 @@ Descripción.
 \pagebreak
 \\
 \subsection{50 agentes en 4 comunidades con 16 objetos}
-Descripción.
-\begin{figure}[h]
+
+Este experimento es muy parecido al anterior, mostrando un descenso mayor para el número de palabras totales y sin el fenómeno del ruido. En la gráfica del número de palabras diferentes observamos de nuevo la deformación, sin embargo es menos notoria.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.65\textwidth]{Figure_311_TotalWords.png}
 	\caption{Número de palabras totales.}
 	\label{fig_004}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.65\textwidth]{Figure_311_TotalDifferentWords.png}
 	\caption{Número de palabras diferentes totales.}
@@ -191,14 +199,17 @@ Descripción.
 \pagebreak
 \\
 \subsection{200 agentes en 16 comunidades con 16 objetos}
-Descripción.
-\begin{figure}[h]
+
+A pesar del cambio drástico en el número de agentes y comunidades, los resultados son casi idénticos al experimento anterior. 
+
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.65\textwidth]{Figure_333_TotalWords.png}
 	\caption{Número de palabras totales.}
 	\label{fig_006}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.65\textwidth]{Figure_333_TotalDifferentWords.png}
 	\caption{Número de palabras diferentes totales.}
@@ -206,8 +217,17 @@ Descripción.
 \end{figure}
 \\
 \subsection{Tablas de resultados}
-\paragraph{}Descripción.
-\begin{table}[h]
+
+En esta sección se muestran las tabla de resultados de diferentes experimentos, divididos en dos grupos:
+
+\begin{enumerate}
+	\item Variando el número de comunidades
+	\item Variando el número de objetos
+\end{enumerate}
+
+En la siguiente sección se discute a detalle el análisis de los resultados.
+
+\begin{table}[H]
 	\centering
 	\caption{Resultados con 4 Comunidades y 4 objetos, variando N.}\label{tab1}
 	\begin{tabular}{|c|c|c|c|c|c|}
@@ -221,9 +241,10 @@ Descripción.
 		200 & 22140.05 &  2868.27 & 2148.05 & 392.86 & 7.7545 \\
 		\hline
 	\end{tabular}
+	\label{table:res1}
 \end{table}
-\paragraph{}Descripción.
-\begin{table}[h]
+
+\begin{table}[H]
 	\centering
 	\caption{Resultados con 8 Comunidades y 4 objetos, variando N.}\label{tab2}
 	\begin{tabular}{|c|c|c|c|c|c|}
@@ -237,7 +258,99 @@ Descripción.
 		200 & 22140.05 &  2868.27 & 2148.05 & 392.86 & 7.7545 \\
 		\hline
 	\end{tabular}
+	\label{table:res2}
 \end{table}
+
+
+
+\begin{table}[H]
+	\centering
+	\caption{Resultados con 16 Comunidades y 4 objetos, variando N.}\label{tab2}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		N &  T conv & T max Words & Max Words & max dif Words & T conv / T max  \\
+		\hline
+		50 & 4376.53 & 616.57
+		& 231.16 & 92.22 & 9.6613 \\
+		\hline
+		100 & 10670.69 & 923.36
+		& 577.19 & 187.3
+		& 11.7172\\
+		\hline
+		200 & 226688.27
+		&  2121.87
+		& 1424.92 & 381.01
+		& 12.7236
+		\\
+		\hline
+	\end{tabular}
+	\label{table:res3}
+\end{table}
+
+
+\begin{table}[H]
+	\centering
+	\caption{Resultados con 4 Comunidades y 4 objetos, variando N.}\label{tab1}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		N &  T conv & T max Words & Max Words & max dif Words & T conv / T max  \\
+		\hline
+		50 & 4154.72 &   527.76 & 366.98 & 96.8 & 8.0205 \\
+		\hline
+		100 & 9799.31 &   1255.67 & 891.11 & 193.89 & 7.8966\\
+		\hline
+		200 & 22140.05 &  2868.27 & 2148.05 & 392.86 & 7.7545 \\
+		\hline
+	\end{tabular}
+	\label{table:res4}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Resultados con 4 Comunidades y 8 objetos, variando N.}\label{tab1}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		N &  T conv & T max Words & Max Words & max dif Words & T conv / T max  \\
+		\hline
+		50 & 9628.6
+		&   1059.34 & 724.28 & 192.33 & 9.2234 \\
+		\hline
+		100 & 21874.85
+		&   2447.92
+		& 1774.93 & 389.61 & 8.9865\\
+		\hline
+		200 & 49482.15 &  5766.0 & 4269.46
+		& 3779.28
+		& 8.6108 \\
+		\hline
+	\end{tabular}
+	\label{table:res5}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Resultados con 4 Comunidades y 16 objetos, variando N.}\label{tab1}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		N &  T conv & T max Words & Max Words & max dif Words & T conv / T max  \\
+		\hline
+		50 & 21633.37
+		&   2120.13 & 1440.99 & 380.59 & 10.3615
+		\\
+		\hline
+		100 & 49176.07
+		&   4915.53
+		& 3538.77 & 772.73 & 10.0334		\\
+		\hline
+		200 & 104739.19
+		&  11438.67 & 8557.9
+		& 1550.24
+		& 9.1727 \\
+		\hline
+	\end{tabular}
+	\label{table:res6}
+\end{table}
+
 \section{Discusión y Conclusiones}
 \paragraph{Impacto del número  de objetos}
 El número de objetos hace aumentar el tiempo de convergencia. Se observa que el tiempo de convergencia es proporcional conforme aumenta el número de objetos. Aumenta el valor del Tiempo de Convergencia sobre el Tiempo con el número máximo de palabras.
